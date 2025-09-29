@@ -8,11 +8,15 @@
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p .",
     "prisma:gen": "prisma generate",
     "prisma:migrate": "prisma migrate dev"
   },
   "dependencies": {
+    "@netlify/functions": "^2.8.1",
     "@prisma/client": "^6.16.2",
+    "@supabase/supabase-js": "^2.58.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
