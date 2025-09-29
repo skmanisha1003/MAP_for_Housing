@@ -1,0 +1,26 @@
+[build]
+  base = ""
+  publish = "maps-frontend/dist"
+  command = "npm ci --prefix maps-backend && (cd maps-backend && npx prisma generate) && npm ci --prefix maps-frontend && npm run build --prefix maps-frontend"
+
+[functions]
+  directory = "maps-backend/netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["@prisma/client", "prisma"]
+  included_files = [
+    "maps-backend/node_modules/.prisma/**",
+    "maps-backend/node_modules/@prisma/**",
+    "maps-backend/prisma/schema.prisma"
+  ]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+
